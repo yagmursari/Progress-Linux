@@ -1,0 +1,41 @@
+#!/bin/bash
+# 1.  ProgressBar fonsiyonunu oluştur.
+
+function ProgressBar {
+
+#Let builtin komutu sağlanan her kelimeyi aritmetik bir ifade olarak soldan sağa doğru değerlendirir ve en sağdaki ifadenin doğruluk değerine göre bir çıkış kodu döndürür.
+
+
+    let _progress=(${1}*100/${2}*100)/100
+    let _done=(${_progress}*4)/10
+    let _left=40-$_done
+    
+    
+# İlerleme çubuğu dize uzunlukları oluşturun
+
+    _fill=$(printf "%${_done}s")
+    _empty=$(printf "%${_left}s")
+
+# İlerleme çubuğu dizeleri oluşturun ve ProgressBar satırını yazdırın
+#çıktısı.
+
+# Progress : [########################################] 100% progressin ilerlermesi
+
+
+printf "\rProgress : [${_fill// /#}${_empty// /-}] ${_progress}%%"
+
+}
+
+# değişkeni
+_start=1
+
+# Bu, ProgressBar işlevi için "totalState" değişkeni olarak hesaplanır
+_end=100
+
+# programın çalışması ispat.
+for number in $(seq ${_start} ${_end})
+do
+    sleep 0.1
+    ProgressBar ${number} ${_end}
+done
+printf '\n PROGRAM FİNİSH....!\n'

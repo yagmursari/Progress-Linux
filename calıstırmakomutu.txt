@@ -1,0 +1,5 @@
+
+#####çalıştırma komutu
+
+chmod u+x 47numara
+./47numara
